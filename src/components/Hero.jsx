@@ -1,22 +1,27 @@
 import React from "react";
-import { github, instagram, linkedin, robot } from "../assets";
+import { robot } from "../assets";
+
+import Github from "./icons/Github.jsx";
+import Instagram from "./icons/Instagram.jsx";
+import Linkedin from "./icons/Linkedin.jsx";
+
 const Hero = () => {
   // Datos de las redes sociales
   const socialLinks = [
     {
       href: "https://github.com/DanielCaicedo97",
       alt: "GitHub",
-      imgSrc: github, // Ruta del ícono de GitHub
+      Icon: Github,
     },
     {
       href: "https://www.linkedin.com/in/daniel-alejandro-caicedo-benavides-7a4b1121b/",
       alt: "LinkedIn",
-      imgSrc: linkedin, // Ruta del ícono de LinkedIn
+      Icon: Linkedin,
     },
     {
       href: "https://www.instagram.com/caicedo.daniel.dev/",
       alt: "Instagram",
-      imgSrc: instagram, // Ruta del ícono de Instagram
+      Icon: Instagram,
     },
   ];
 
@@ -35,10 +40,10 @@ const Hero = () => {
         </div>
         {/* Description */}
         <div>
-          <h1 className="text-white  text-[40px] sm:text-[64px] font-bold">
+          <h1 className="text-dark dark:text-white  text-[40px] sm:text-[64px] font-bold">
             Hi, I'm Daniel
           </h1>
-          <p className="text-white text-[20px]">
+          <p className="text-dark dark:text-white text-[20px]">
             A Electronic Engineer | Mechatronic Designer | Software Developer
           </p>
           <p className="text-[#787878]">
@@ -53,12 +58,16 @@ const Hero = () => {
           <ul className="space-x-4 mt-6 hidden sm:flex">
             {socialLinks.map((social, index) => (
               <li key={index}>
-                <a href={social.href} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={social.imgSrc}
-                    alt={social.alt}
-                    className="w-[46px] h-[46px] hover:scale-120 transition-all duration-200"
-                  />
+                <a
+                  href={social.href}
+                  alt={social.alt}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {React.createElement(social.Icon, {
+                    className:
+                      "width-[22px] height-[22px] fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200",
+                  })}
                 </a>
               </li>
             ))}
@@ -70,26 +79,7 @@ const Hero = () => {
       <div className="flex flex-1 w-full justify-center items-start md:my-0 mt-5 relative">
         <div className="flex sm:hidden  px-6 w-full">
           {/* Social links */}
-          <div className="flex-1 mt-[20%]">
-            {/* Redes sociales */}
-            <ul className="flex flex-row justify-between items-center sm:hidden">
-              {socialLinks.map((social, index) => (
-                <li key={index}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={social.imgSrc}
-                      alt={social.alt}
-                      className="w-[22px] h-[22px] hover:scale-120 transition-all duration-200"
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className="flex-1 mt-[20%]"></div>
 
           <div className=" flex-1/2  relative">
             <img

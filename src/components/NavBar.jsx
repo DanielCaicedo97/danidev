@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { close, logo, menu, moon, sun } from "../assets";
+import { close, menu } from "../assets";
+import Logo from "./icons/Logo.jsx";
+import Moon from "./icons/Moon.jsx";
+import Sun from "./icons/Sun.jsx";
+
 const NavBar = () => {
   const navLinks = [
     { href: "#home", label: "Home" },
@@ -27,6 +31,7 @@ const NavBar = () => {
         className=" justify-between items-center h-[150px] w-full size-full hidden md:flex"
         aria-label="Main navigation"
       >
+        {/* Forma lado derecho */}
         <div className="relative w-[410px] h-[100px]">
           {/* Sombra */}
           <div
@@ -40,13 +45,13 @@ const NavBar = () => {
 
           {/* Forma principal */}
           <div
-            className="absolute w-full h-full bg-primary flex justify-center items-center text-white font-bold"
+            className="absolute w-full h-full bg-primary dark:bg-primary-dark flex justify-center items-center text-white font-bold"
             style={{
               clipPath: leftShape,
               zIndex: 1, // Coloca la forma principal encima de la sombra
             }}
           >
-            <img src={logo} alt="logo" className="w-[56px] h-[56px]" />
+            <Logo className="fill-primary-dark dark:fill-primary" />
           </div>
         </div>
 
@@ -64,7 +69,7 @@ const NavBar = () => {
 
           {/* Forma principal */}
           <div
-            className="absolute w-full h-full bg-primary flex justify-center items-center"
+            className="absolute w-full h-full bg-primary dark:bg-primary-dark flex justify-center items-center"
             style={{
               clipPath: centerShape,
               zIndex: 1, // Coloca la forma principal encima de la sombra
@@ -75,7 +80,7 @@ const NavBar = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-white text-lg font-semibold hover:text-gray-300 transition-all duration-200"
+                    className="text-primary-dark dark:text-primary text-lg font-semibold hover:text-gray-500 transition-all duration-200"
                   >
                     {link.label}
                   </a>
@@ -99,20 +104,25 @@ const NavBar = () => {
 
           {/* Forma principal */}
           <div
-            className="absolute w-full h-full bg-primary flex justify-center items-center"
+            className="absolute w-full h-full bg-primary dark:bg-primary-dark flex justify-center items-center"
             style={{
               clipPath: rightShape,
               zIndex: 1, // Coloca la forma principal encima de la sombra
             }}
           >
-            <img
-              src={darkMode ? moon : sun}
-              alt="dark_mode"
-              className={`w-[40px] h-[40px] transition-all duration-200 hover:scale-120 ${
-                darkMode ? "rotate-45 ease-out" : "rotate-0 ease-out"
-              }}`}
+            <button
               onClick={handDarkMode}
-            />
+              className={` flex justify-center items-center rounded-full 
+                 bg-primary dark:bg-primary-dark hover:scale-120 transition-all duration-300 ${
+                   darkMode ? "rotate-0 ease-out" : "rotate-45 ease-out"
+                 }`}
+            >
+              {darkMode ? (
+                <Sun className="fill-primary-dark dark:fill-primary" />
+              ) : (
+                <Moon className="fill-primary-dark dark:fill-primary" />
+              )}
+            </button>
           </div>
         </div>
       </nav>
@@ -141,7 +151,7 @@ const NavBar = () => {
           >
             <div className="flex justify-between items-center w-[50%]">
               <div className="flex-1 flex justify-center">
-                <img src={logo} alt="logo" className="w-[56px] h-[56px] " />
+                <Logo />
               </div>
               <div>
                 <img
