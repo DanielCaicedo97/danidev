@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { close, menu } from "../assets";
 import Logo from "./icons/Logo.jsx";
 import Moon from "./icons/Moon.jsx";
@@ -18,12 +18,30 @@ const NavBar = () => {
   const centerShape = "polygon(0 0, 100% 0, 85% 100%, 15% 100%)";
   const rightShape = "polygon(25% 0, 100% 0, 75% 100%, 0 100%)";
 
-  const [toggle, setToggle] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  const handDarkMode = () => {
-    setDarkMode((prev) => !prev);
+  // Obtener preferencias del usuario o del sistema
+  const getInitialTheme = () => {
+    const userPreference = localStorage.getItem("theme");
+    if (userPreference) return userPreference === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   };
+
+  const [toggle, setToggle] = useState(false);
+  const [darkMode, setDarkMode] = useState(getInitialTheme);
+
+  // Alternar entre temas y almacenarlo en localStorage
+  const handleDarkMode = () => {
+    setDarkMode((prev) => {
+      const newTheme = !prev ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      document.documentElement.classList.toggle("dark", newTheme === "dark");
+      return !prev;
+    });
+  };
+
+  // Aplicar el tema guardado o el del sistema
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
 
   return (
     <header className="absolute top-1/2 w-full">
@@ -111,7 +129,7 @@ const NavBar = () => {
             }}
           >
             <button
-              onClick={handDarkMode}
+              onClick={handleDarkMode}
               className={` flex justify-center items-center rounded-full 
                  bg-primary dark:bg-primary-dark hover:scale-120 transition-all duration-300 ${
                    darkMode ? "rotate-0 ease-out" : "rotate-45 ease-out"
@@ -143,7 +161,7 @@ const NavBar = () => {
 
           {/* Forma principal */}
           <div
-            className=" w-full h-full bg-primary flex justify-center items-center"
+            className=" w-full h-full bg-primary-dark  flex justify-center items-center"
             style={{
               clipPath: rightShape,
               zIndex: 1, // Coloca la forma principal encima de la sombra
@@ -151,7 +169,7 @@ const NavBar = () => {
           >
             <div className="flex justify-between items-center w-[50%]">
               <div className="flex-1 flex justify-center">
-                <Logo />
+                <img alt="logo" src="/logo.svg"/>
               </div>
               <div>
                 <img

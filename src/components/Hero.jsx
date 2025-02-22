@@ -34,9 +34,11 @@ const Hero = () => {
 
       <div className="flex flex-1 flex-col xl:px-0 sm:mt-0 mt-[35%] sm:px-16 px-6">
         {/* Available for projects  */}
-        <div className="flex border-1 border-white w-[271px] rounded-full p-2 justify-start items-center ">
+        <div className="flex border-1 border-primary-dark dark:border-primary w-[271px] rounded-full p-2 justify-start items-center ">
           <span className="bg-[#0DFF00] w-[14px] h-[14px] m-2 rounded-full "></span>
-          <h3 className="text-white">Available for projects</h3>
+          <h3 className="text-primary-dark dark:text-primary">
+            Available for projects
+          </h3>
         </div>
         {/* Description */}
         <div>
@@ -65,8 +67,10 @@ const Hero = () => {
                   rel="noopener noreferrer"
                 >
                   {React.createElement(social.Icon, {
+                    width: 50,
+                    height: 50,
                     className:
-                      "width-[22px] height-[22px] fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200",
+                      "fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200 ",
                   })}
                 </a>
               </li>
@@ -74,14 +78,33 @@ const Hero = () => {
           </ul>
         </div>
       </div>
-
       {/* IMAGE 8 BIT  */}
       <div className="flex flex-1 w-full justify-center items-start md:my-0 mt-5 relative">
         <div className="flex sm:hidden  px-6 w-full">
           {/* Social links */}
-          <div className="flex-1 mt-[20%]"></div>
+          <div className="flex-1">
+            {/* Redes sociales */}
+            <ul className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <li key={index}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {React.createElement(social.Icon, {
+                    width: 35,
+                    height: 35,
+                    className:
+                      "fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200 ",
+                    })}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className=" flex-1/2  relative">
+          <div className="flex-1/4 relative w-full">
             <img
               className="absolute -top-15 w-full  object-cover z-[10]"
               src={robot}

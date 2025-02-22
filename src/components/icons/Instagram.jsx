@@ -6,6 +6,7 @@ const Instagram = (props) => (
     height={46}
     fill="white"
     {...props}
+    viewBox="0 0 46 46" // Agregado para mantener proporción en redimensionado
   >
     <path
       fill={props.fill}
