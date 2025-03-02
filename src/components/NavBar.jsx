@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { close, menu } from "../assets";
+import { close, menu, logo_svg } from "../assets";
 import Logo from "./icons/Logo.jsx";
 import Moon from "./icons/Moon.jsx";
 import Sun from "./icons/Sun.jsx";
@@ -169,7 +169,7 @@ const NavBar = () => {
           >
             <div className="flex justify-between items-center w-[50%]">
               <div className="flex-1 flex justify-center">
-                <img alt="logo" src="/logo.svg"/>
+                <img alt="logo" src="./logo.svg" className="w-[25%]" />
               </div>
               <div>
                 <img

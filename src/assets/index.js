@@ -1,4 +1,6 @@
 import robot from "./8bit_dani_dev.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-export { robot, menu, close };
+import logo_svg from "./logo.svg";
+import logo_lines_inside from "./logo_lines_inside.svg";
+export { robot, menu, close, logo_svg,logo_lines_inside };

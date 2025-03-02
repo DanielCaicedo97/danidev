@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { robot } from "../assets";
+import LogoParticles from "../components/particles/LogoParticles";
 
 import Github from "./icons/Github.jsx";
 import Instagram from "./icons/Instagram.jsx";
 import Linkedin from "./icons/Linkedin.jsx";
+import Logo from "./icons/Logo.jsx";
 
 const Hero = () => {
   // Datos de las redes sociales
+
+  const [isMobile, setIsMobile] = useState(false);
+  // Detectar si la pantalla es móvil
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640); // sm: en Tailwind (640px)
+    };
+
+    handleResize(); // Llamada inicial
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const socialLinks = [
     {
       href: "https://github.com/DanielCaicedo97",
@@ -32,7 +48,7 @@ const Hero = () => {
     >
       {/* INFORMATION DANI DEV */}
 
-      <div className="flex flex-1 flex-col xl:px-0 sm:mt-0 mt-[35%] sm:px-16 px-6">
+      <div className="flex flex-1 w-[100%] flex-col xl:px-0 sm:mt-0 mt-[35%] sm:px-16 px-6 mr-10">
         {/* Available for projects  */}
         <div className="flex border-1 border-primary-dark dark:border-primary w-[271px] rounded-full p-2 justify-start items-center ">
           <span className="bg-[#0DFF00] w-[14px] h-[14px] m-2 rounded-full "></span>
@@ -79,12 +95,29 @@ const Hero = () => {
         </div>
       </div>
       {/* IMAGE 8 BIT  */}
-      <div className="flex flex-1 w-full justify-center items-start md:my-0 mt-5 relative">
-        <div className="flex sm:hidden  px-6 w-full">
+      <div
+        id="social_logo"
+        className="flex flex-1 w-full h-full justify-center items-start sm:items-center md:my-0 relative"
+      >
+        <div className="flex flex-col sm:hidden  justify-center items-center px-6 w-full">
           {/* Social links */}
-          <div className="flex-1">
+          {isMobile && (
+            <div id="logo_particles-mobile" className="mb-16 w-full h-full">
+              <LogoParticles
+                key="mobile"
+                polygonScale={0.4}
+                particlesNumbers={350}
+                linkDistance={13}
+                moveRadius={0.5}
+                modeBubbleDistance={20}
+                modeBubbleSize={2}
+              />
+            </div>
+          )}
+
+          <div id="social_mobile" className="w-full">
             {/* Redes sociales */}
-            <ul className="flex space-x-4">
+            <ul className="flex space-x-12 justify-center">
               {socialLinks.map((social, index) => (
                 <li key={index}>
                   <a
@@ -93,10 +126,10 @@ const Hero = () => {
                     rel="noopener noreferrer"
                   >
                     {React.createElement(social.Icon, {
-                    width: 35,
-                    height: 35,
-                    className:
-                      "fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200 ",
+                      width: 40,
+                      height: 40,
+                      className:
+                        "fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200 ",
                     })}
                   </a>
                 </li>
@@ -104,24 +137,39 @@ const Hero = () => {
             </ul>
           </div>
 
-          <div className="flex-1/4 relative w-full">
+          {/*IMAGE 8 BIT MODE MOBILE  */}
+          {/* <div className="flex-1/2 relative w-full">
             <img
               className="absolute -top-15 w-full  object-cover z-[10]"
               src={robot}
               alt="Dani_dev_robot"
             />
-          </div>
+          </div> */}
         </div>
 
-        <img
+        {/* <img
           className="z-[10] w-[70%] hidden sm:flex object-cover"
           src={robot}
           alt="Dani_dev_robot"
-        />
+        /> */}
 
-        {/* gradient start */}
-        <div className="absolute w-[50%]  h-[50%] top-[20%]  green__gradient -rotate-75" />
-        <div className="absolute z-[0] w-[50%] h-[50%] bottom-20 right-20 blue__gradient" />
+        {/* 🔹 Versión para Escritorio */}
+        {!isMobile && (
+          <div
+            id="logo_particles-desktop"
+            className="z-[10] w-full h-[70%] hidden sm:flex "
+          >
+            <LogoParticles
+              key="desktop"
+              polygonScale={1.5}
+              particlesNumbers={500}
+              linkDistance={45}
+              moveRadius={3}
+              modeBubbleDistance={50}
+              modeBubbleSize={5}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ const Logo = (props) => (
     height={56}
     fill="none"
     {...props}
+    viewBox="0 0 52 56" // Agregado para mantener proporción en redimensionado
   >
     <mask
       id="a"
