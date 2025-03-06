@@ -23,7 +23,7 @@ const Footer = () => {
     },
   ];
   return (
-    <div
+    <footer
       id="footer"
       className="flex flex-col sm:flex-row w-full items-center justify-between px-6 my-8 md:px-16 py-1"
     >
@@ -61,7 +61,7 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </footer>
   );
 };
 
