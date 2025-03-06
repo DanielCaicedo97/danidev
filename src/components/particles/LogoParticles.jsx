@@ -1,7 +1,7 @@
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
-import optionsParticles from "./optionsParticles.js";
+import optionsParticles from "./PolygonOptionsParticles.js";
 import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 
 const LogoParticles = ({

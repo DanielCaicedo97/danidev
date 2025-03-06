@@ -8,21 +8,20 @@ import Linkedin from "./icons/Linkedin.jsx";
 import Logo from "./icons/Logo.jsx";
 
 const Hero = () => {
-  // Datos de las redes sociales
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [windowWidth, setWindowWidth] = useState(1280);
 
-  const [isMobile, setIsMobile] = useState(false);
-  // Detectar si la pantalla es móvil
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640); // sm: en Tailwind (640px)
+      setIsMobile(window.innerWidth < 640);
+      setWindowWidth(window.innerWidth);
     };
-
-    handleResize(); // Llamada inicial
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Datos de las redes sociales
   const socialLinks = [
     {
       href: "https://github.com/DanielCaicedo97",
@@ -64,7 +63,7 @@ const Hero = () => {
           <p className="text-dark dark:text-white text-[20px]">
             A Electronic Engineer | Mechatronic Designer | Software Developer
           </p>
-          <p className="text-[#787878]">
+          <p className="text-[#787878] text-justify">
             I’m passionate about AI and robotics, merging technology with
             creativity to build innovative solutions. Let’s shape the future
             together.
@@ -136,34 +135,19 @@ const Hero = () => {
               ))}
             </ul>
           </div>
-
-          {/*IMAGE 8 BIT MODE MOBILE  */}
-          {/* <div className="flex-1/2 relative w-full">
-            <img
-              className="absolute -top-15 w-full  object-cover z-[10]"
-              src={robot}
-              alt="Dani_dev_robot"
-            />
-          </div> */}
         </div>
-
-        {/* <img
-          className="z-[10] w-[70%] hidden sm:flex object-cover"
-          src={robot}
-          alt="Dani_dev_robot"
-        /> */}
 
         {/* 🔹 Versión para Escritorio */}
         {!isMobile && (
           <div
             id="logo_particles-desktop"
-            className="z-[10] w-full h-[70%] hidden sm:flex "
+            className="z-[0] w-full h-full hidden sm:flex "
           >
             <LogoParticles
               key="desktop"
-              polygonScale={1.5}
-              particlesNumbers={500}
-              linkDistance={45}
+              polygonScale={1.2}
+              particlesNumbers={450}
+              linkDistance={30}
               moveRadius={3}
               modeBubbleDistance={50}
               modeBubbleSize={5}

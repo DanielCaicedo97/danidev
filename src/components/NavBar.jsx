@@ -98,7 +98,10 @@ const NavBar = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-primary-dark dark:text-primary text-lg font-semibold hover:text-gray-500 transition-all duration-200"
+                    className="relative text-primary-dark dark:text-primary text-lg font-semibold transition-all duration-200 
+             after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+             after:bg-primary-dark dark:after:bg-primary after:transition-all after:duration-300 
+             hover:after:w-full"
                   >
                     {link.label}
                   </a>

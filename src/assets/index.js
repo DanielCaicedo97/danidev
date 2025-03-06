@@ -1,4 +1,4 @@
-import robot from "./8bit_dani_dev.png";
+import robot from "./8bit_dani_dev.webp";
 import menu from "./menu.svg";
 import close from "./close.svg";
 import logo_svg from "./logo.svg";
