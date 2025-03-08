@@ -15,9 +15,9 @@ const Skill = () => {
   return (
     <section
       id="skills"
-      className="flex flex-col items-center justify-center px-6 md:px-16 py-10 gap-10 lg:gap-16"
+      className="flex flex-col items-center justify-center py-10 gap-10 lg:gap-16"
     >
-      <div className="flex flex-col p-8 max-w-5xl">
+      <div className="flex flex-col p-4 lg:p-0 max-w-5xl">
         <h2 className="text-dark dark:text-white font-bold text-4xl sm:text-5xl text-center my-12">
           My Skills
         </h2>
@@ -30,10 +30,10 @@ const Skill = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-5xl">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-5xl p-4 lg:p-0">
         {/* Mechatronic Design */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
-          <FaCogs className="text-4xl text-primary dark:text-white mb-4" />
+          <FaCogs className="text-4xl text-dark dark:text-white mb-4" />
           <h3 className="text-lg font-semibold text-dark dark:text-white">
             Mechatronic Design
           </h3>
@@ -56,7 +56,7 @@ const Skill = () => {
 
         {/* Electronic Engineering */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
-          <FaMicrochip className="text-4xl text-primary dark:text-white mb-4" />
+          <FaMicrochip className="text-4xl text-dark dark:text-white mb-4" />
           <h3 className="text-lg font-semibold text-dark dark:text-white">
             Electronic Engineering
           </h3>
@@ -79,7 +79,7 @@ const Skill = () => {
 
         {/* AI & Software Development */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
-          <FaBrain className="text-4xl text-primary dark:text-white mb-4" />
+          <FaBrain className="text-4xl text-dark dark:text-white mb-4" />
           <h3 className="text-lg font-semibold text-dark dark:text-white">
             AI & Software Development
           </h3>

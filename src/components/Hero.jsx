@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LogoParticles from "../components/particles/LogoParticles";
 
-import Github from "./icons/Github.jsx";
-import Instagram from "./icons/Instagram.jsx";
-import Linkedin from "./icons/Linkedin.jsx";
+import SocialIcons from "./SocialIcons.jsx";
 
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
@@ -18,25 +16,6 @@ const Hero = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // Datos de las redes sociales
-  const socialLinks = [
-    {
-      href: "https://github.com/DanielCaicedo97",
-      alt: "GitHub",
-      Icon: Github,
-    },
-    {
-      href: "https://www.linkedin.com/in/daniel-alejandro-caicedo-benavides-7a4b1121b/",
-      alt: "LinkedIn",
-      Icon: Linkedin,
-    },
-    {
-      href: "https://www.instagram.com/caicedo.daniel.dev/",
-      alt: "Instagram",
-      Icon: Instagram,
-    },
-  ];
 
   return (
     <section className="flex h-full flex-col lg:flex-row items-center justify-center lg:justify-between mt-10 lg:mt-0 sm:px-6  lg:px-32 space-y-10 lg:space-y-0 ">
@@ -68,25 +47,10 @@ const Hero = () => {
         {/* Social links */}
         <div>
           {/* Redes sociales */}
-          <ul className="space-x-4 mt-6 hidden lg:flex">
-            {socialLinks.map((social, index) => (
-              <li key={index}>
-                <a
-                  href={social.href}
-                  alt={social.alt}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {React.createElement(social.Icon, {
-                    width: 50,
-                    height: 50,
-                    className:
-                      "fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200 ",
-                  })}
-                </a>
-              </li>
-            ))}
-          </ul>
+
+          <div className="hidden lg:flex">
+            <SocialIcons width={50} height={50} />
+          </div>
         </div>
       </div>
       {/* IMAGE 8 BIT  */}
@@ -113,24 +77,7 @@ const Hero = () => {
 
           <div id="social_mobile" className="w-full">
             {/* Redes sociales */}
-            <ul className="flex justify-around">
-              {socialLinks.map((social, index) => (
-                <li key={index}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {React.createElement(social.Icon, {
-                      width: 40,
-                      height: 40,
-                      className:
-                        "fill-primary-dark dark:fill-primary hover:scale-110 transition-all duration-200 ",
-                    })}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <SocialIcons width={40} height={40} />
           </div>
         </div>
         {/* Logo Versión para Escritorio */}

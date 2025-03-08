@@ -37,7 +37,7 @@ function App() {
 
 // Componente reutilizable para secciones
 const Section = ({ children }) => (
-  <section className="flex justify-center items-start sm:px-16 px-6">
+  <section className="flex justify-center items-start sm:px-16 px-4">
     <div className="xl:max-w-[1280px] w-full">{children}</div>
   </section>
 );
