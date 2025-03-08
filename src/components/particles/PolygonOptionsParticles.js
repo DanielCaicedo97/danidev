@@ -15,7 +15,6 @@ let svgDimensions = { width: 0, height: 0 };
 // Obtener dimensiones antes de usarlas
 getSvgDimensions().then((dimensions) => {
   svgDimensions = dimensions;
-  console.log("SVG Dimensions:", svgDimensions); // Para depuración
 });
 
 // Función que devuelve las opciones, asegurando que `svgDimensions` esté listo
