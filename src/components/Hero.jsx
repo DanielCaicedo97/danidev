@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LogoParticles from "../components/particles/LogoParticles";
 
 import SocialIcons from "./SocialIcons.jsx";
 
 const Hero = () => {
+  const logoRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [PolygonContainer, setPolygonContainer] = useState(0);
   const [windowWidth, setWindowWidth] = useState(1280);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
       setWindowWidth(window.innerWidth);
+      if (logoRef.current) {
+        const { width, height } = logoRef.current.getBoundingClientRect();
+        setPolygonContainer(height);
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -59,23 +65,28 @@ const Hero = () => {
         className="flex flex-1 w-full h-full justify-center items-start sm:items-center md:my-0 relative"
       >
         {/* Logo Versión para Mobile */}
-        <div className="flex flex-col justify-center items-center px-6 w-full lg:hidden ">
+        <div className="flex flex-col justify-center items-center  w-full lg:hidden ">
           {/* Social links */}
           {isMobile && (
-            <div id="logo_particles-mobile" className="mb-8 w-full h-full">
+            <div
+              id="logo_particles-mobile"
+              ref={logoRef}
+              className="mb-8 w-full h-full"
+            >
               <LogoParticles
                 key="mobile"
                 polygonScale={0.4}
                 particlesNumbers={350}
                 linkDistance={13}
                 moveRadius={0.5}
-                modeBubbleDistance={20}
-                modeBubbleSize={2}
+                modeBubbleDistance={15}
+                modeBubbleSize={10}
+                heightContainer={PolygonContainer}
               />
             </div>
           )}
 
-          <div id="social_mobile" className="w-full">
+          <div id="social_mobile" className="w-full px-4">
             {/* Redes sociales */}
             <SocialIcons width={40} height={40} />
           </div>
@@ -89,7 +100,7 @@ const Hero = () => {
             <LogoParticles
               key="desktop"
               polygonScale={1.2}
-              particlesNumbers={450}
+              particlesNumbers={500}
               linkDistance={30}
               moveRadius={3}
               modeBubbleDistance={50}

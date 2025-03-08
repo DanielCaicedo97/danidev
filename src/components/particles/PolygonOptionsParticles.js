@@ -1,13 +1,34 @@
-import { logo_lines_inside } from "../../assets";
+import logo_lines_inside from "../../assets/logo_lines_inside.svg";
 
-const options = (
+const getSvgDimensions = () => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = logo_lines_inside;
+    img.onload = () => {
+      resolve({ width: img.width, height: img.height });
+    };
+  });
+};
+
+let svgDimensions = { width: 0, height: 0 };
+
+// Obtener dimensiones antes de usarlas
+getSvgDimensions().then((dimensions) => {
+  svgDimensions = dimensions;
+  console.log("SVG Dimensions:", svgDimensions); // Para depuración
+});
+
+// Función que devuelve las opciones, asegurando que `svgDimensions` esté listo
+const getOptions = async (
   polygonScale = 1.5,
   particlesNumbers = 500,
   linkDistance = 40,
   moveRadius = 3,
   modeBubbleDistance = 50,
-  modeBubbleSize = 5
+  modeBubbleSize = 5,
+  heightContainer = null
 ) => {
+  const svgDimensions = await getSvgDimensions();
   return {
     autoPlay: true,
     fullScreen: false,
@@ -216,16 +237,9 @@ const options = (
       move: {
         angle: {
           offset: 0,
-          value: 90,
+          value: 10,
         },
-        attract: {
-          distance: 200,
-          enable: false,
-          rotate: {
-            x: 3000,
-            y: 3000,
-          },
-        },
+
         center: {
           x: 50,
           y: 50,
@@ -237,20 +251,7 @@ const options = (
         direction: "none",
         drift: 0,
         enable: true,
-        gravity: {
-          acceleration: 9.81,
-          enable: false,
-          inverse: false,
-          maxSpeed: 50,
-        },
-        path: {
-          clamp: true,
-          delay: {
-            value: 0,
-          },
-          enable: false,
-          options: {},
-        },
+
         outModes: {
           default: "bounce",
           bottom: "bounce",
@@ -260,17 +261,8 @@ const options = (
         },
         random: false,
         size: false,
-        speed: 0.5,
-        spin: {
-          acceleration: 0,
-          enable: false,
-        },
+        speed: 0.1,
         straight: false,
-        trail: {
-          enable: false,
-          length: 10,
-          fill: {},
-        },
         vibrate: false,
         warp: false,
       },
@@ -501,7 +493,7 @@ const options = (
             value: "#092349",
           },
           width: 0.5,
-          opacity: 0.2,
+          opacity: 0.7,
         },
       },
       enable: true,
@@ -512,7 +504,9 @@ const options = (
         radius: moveRadius,
         type: "path",
       },
-      scale: polygonScale,
+      scale: heightContainer
+        ? heightContainer / svgDimensions.height
+        : polygonScale,
       type: "inline",
       url: logo_lines_inside,
       position: {
@@ -522,4 +516,4 @@ const options = (
     },
   };
 };
-export default options;
+export default getOptions;
