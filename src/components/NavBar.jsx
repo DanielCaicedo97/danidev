@@ -196,6 +196,7 @@ const NavBar = () => {
                 <a
                   href={link.href}
                   className="text-white text-2xl font-semibold hover:text-gray-300 transition-all duration-200"
+                  onClick={() => setToggle((prev) => !prev)}
                 >
                   {link.label}
                 </a>
