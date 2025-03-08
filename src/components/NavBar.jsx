@@ -27,6 +27,7 @@ const NavBar = () => {
 
   const [toggle, setToggle] = useState(false);
   const [darkMode, setDarkMode] = useState(getInitialTheme);
+  const [Language, setLanguage] = useState("ES");
 
   // Alternar entre temas y almacenarlo en localStorage
   const handleDarkMode = () => {
@@ -38,6 +39,14 @@ const NavBar = () => {
     });
   };
 
+  const handleLanguage = () => {
+    setLanguage((prev) => {
+      const newLanguage = prev === "ES" ? "EN" : "ES";
+      localStorage.setItem("Language", newLanguage);
+      document.documentElement.lang = newLanguage.toLowerCase();
+      return newLanguage;
+    });
+  };
   // Aplicar el tema guardado o el del sistema
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -46,7 +55,8 @@ const NavBar = () => {
   return (
     <header className="top-1/2 w-full">
       <nav
-        className=" justify-between items-center h-[150px] w-full size-full hidden lg:flex"
+        id="navbar_desktop"
+        className="justify-between items-center h-[150px] w-full size-full hidden lg:flex"
         aria-label="Main navigation"
       >
         {/* Forma lado derecho */}
@@ -131,7 +141,7 @@ const NavBar = () => {
             <button
               onClick={handleDarkMode}
               className={` flex justify-center items-center rounded-full 
-                 bg-primary dark:bg-primary-dark hover:scale-120 transition-all duration-300 ${
+                 bg-primary dark:bg-primary-dark hover:scale-120 transition-all duration-300 m-2 p-4 ${
                    darkMode ? "rotate-0 ease-out" : "rotate-45 ease-out"
                  }`}
             >
@@ -141,12 +151,24 @@ const NavBar = () => {
                 <Moon className="fill-primary-dark dark:fill-primary" />
               )}
             </button>
+
+            <button
+              onClick={handleLanguage}
+              className="flex items-center justify-center h-12 w-12 rounded-full dark:bg-primary bg-primary-dark
+             dark:text-black text-white text-xl font-bold hover:scale-120 transition-all duration-300 
+            shadow-md"
+            >
+              {Language}
+            </button>
           </div>
         </div>
       </nav>
 
       {/* navbar mobile */}
-      <nav className="flex justify-center items-center lg:hidden ">
+      <nav
+        id="navbar_mobile"
+        className="flex justify-center items-center lg:hidden "
+      >
         {/* Center Navigation */}
         <div className="relative w-full h-[calc(100vw*0.25)] mt-4 ">
           {/* Sombra */}
@@ -175,7 +197,7 @@ const NavBar = () => {
                 <img
                   src={toggle ? close : menu}
                   alt="menu"
-                  className={`w-[28px] h-[32px] transition-all duration-200 ${
+                  className={`transition-all duration-200 ${
                     toggle ? "rotate-90 ease-out" : "rotate-0 ease-out"
                   }`}
                   onClick={() => setToggle((prev) => !prev)}
@@ -188,7 +210,7 @@ const NavBar = () => {
         <div
           className={`${
             toggle ? "flex" : "hidden"
-          } p-4 absolute top-8  left-0  bg-secondary mx-2 my-2 w-[60%] rounded-xl `}
+          } flex-col  justify-between max-w-72 items-center p-4 absolute top-8 left-0 md:left-32 space-y-4 bg-secondary mx-2 my-2 w-[60%] rounded-xl `}
         >
           <ul className="flex flex-col justify-end items-center flex-1">
             {navLinks.map((link, index) => (
@@ -203,6 +225,28 @@ const NavBar = () => {
               </li>
             ))}
           </ul>
+          <button
+            onClick={handleDarkMode}
+            className={` flex justify-center items-center rounded-full 
+                  hover:scale-120 transition-all duration-300  ${
+                    darkMode ? "rotate-0 ease-out" : "rotate-45 ease-out"
+                  }`}
+          >
+            {darkMode ? (
+              <Sun className="fill-primary" />
+            ) : (
+              <Moon className="fill-primary" />
+            )}
+          </button>
+
+          <button
+            onClick={handleLanguage}
+            className="flex items-center justify-center h-10 w-full max-w-32 rounded-full bg-primary 
+              text-black text-xl font-bold hover:scale-120 transition-all duration-300 
+            shadow-md"
+          >
+            {Language}
+          </button>
         </div>
       </nav>
     </header>

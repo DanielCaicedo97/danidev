@@ -76,11 +76,11 @@ const Hero = () => {
               <LogoParticles
                 key="mobile"
                 polygonScale={0.4}
-                particlesNumbers={350}
+                particlesNumbers={300}
                 linkDistance={13}
                 moveRadius={0.5}
                 modeBubbleDistance={15}
-                modeBubbleSize={10}
+                modeBubbleSize={3}
                 heightContainer={PolygonContainer}
               />
             </div>
