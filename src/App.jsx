@@ -1,41 +1,45 @@
-import About from "./components/About";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import NavBar from "./components/NavBar";
-import Skill from "./components/Skill";
+import { About, Footer, Hero, NavBar, Skill } from "./components/index.js";
+
 function App() {
   return (
-    <main className=" min-h-screen max-w-screen overflow-x-hidden bg-primary ">
-      <div className="flex  justify-center items-center sm:px-16 px-6 ">
-        <div className="xl:max-w-[1280px] w-full relative">
+    <main className="min-h-screen w-full overflow-x-hidden bg-primary dark:bg-primary-dark">
+      {/* Navbar y Hero */}
+      <div
+        id="home"
+        className="flex flex-col items-center sm:px-16 px-4 lg:h-screen"
+      >
+        {/* Navbar con altura automática */}
+        <div className="w-full max-w-[1280px]">
           <NavBar />
         </div>
-      </div>
-      <div className="bg-primary  dark:bg-primary-dark flex justify-center items-start">
-        <div className="xl:max-w-[1280px] w-full">
+
+        {/* Hero ocupa el espacio restante */}
+        <div className="w-full max-w-[1280px] flex-1 flex items-center justify-center mb-12 md:mb-18">
           <Hero />
         </div>
       </div>
 
-      <div className="bg-primary flex justify-center  dark:bg-primary-dark items-start sm:px-16 px-6">
-        <div className="xl:max-w-[1280px] w-full">
+      <div className="min-h-screen">
+        <Section>
           <About />
-        </div>
-      </div>
-
-      <div className="bg-primary flex justify-center  dark:bg-primary-dark items-start sm:px-16 px-6 overflow-hidden">
-        <div className="xl:max-w-[1280px] w-full ">
+        </Section>
+        <Section>
           <Skill />
-        </div>
-      </div>
-
-      <div className="bg-primary flex justify-center  dark:bg-primary-dark items-start sm:px-16 px-6 overflow-hidden">
-        <div className="xl:max-w-[1280px] w-full ">
+        </Section>
+        <Section>
           <Footer />
-        </div>
+        </Section>
       </div>
+      {/* Secciones principales */}
     </main>
   );
 }
+
+// Componente reutilizable para secciones
+const Section = ({ children }) => (
+  <section className="flex justify-center items-start sm:px-16 px-6">
+    <div className="xl:max-w-[1280px] w-full">{children}</div>
+  </section>
+);
 
 export default App;

@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { robot } from "../assets";
 import LogoParticles from "../components/particles/LogoParticles";
 
 import Github from "./icons/Github.jsx";
 import Instagram from "./icons/Instagram.jsx";
 import Linkedin from "./icons/Linkedin.jsx";
-import Logo from "./icons/Logo.jsx";
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [windowWidth, setWindowWidth] = useState(1280);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
+      setIsMobile(window.innerWidth < 1024);
       setWindowWidth(window.innerWidth);
     };
 
@@ -41,29 +39,27 @@ const Hero = () => {
   ];
 
   return (
-    <section
-      id="home"
-      className="flex flex-col h-screen lg:flex-row items-center justify-center lg:justify-between lg:h-screen px-6 sm:px-16  md:px-24 lg:px-32 py-12 space-y-10 lg:space-y-0 "
-    >
+    <section className="flex h-full flex-col lg:flex-row items-center justify-center lg:justify-between mt-10 lg:mt-0 sm:px-6  lg:px-32 space-y-10 lg:space-y-0 ">
       {/* INFORMATION DANI DEV */}
 
-      <div className="flex flex-1 w-[100%] flex-col xl:px-0 sm:mt-0 mt-[35%] sm:px-16 px-6 mr-10">
+      <div className="flex lg:flex-1 w-full flex-col xl:px-0 sm:mt-0 sm:px-4 px-4 lg:mr-10">
         {/* Available for projects  */}
-        <div className="flex border-1 border-primary-dark dark:border-primary w-[271px] rounded-full p-2 justify-start items-center ">
-          <span className="bg-[#0DFF00] w-[14px] h-[14px] m-2 rounded-full "></span>
+
+        <div className="flex border-1 border-primary-dark dark:border-primary w-[100%] xl:w-[55%]  rounded-full p-2 justify-start items-center mb-4">
+          <span className="bg-[#0DFF00] w-4 h-4 m-2 rounded-full "></span>
           <h3 className="text-primary-dark dark:text-primary">
             Available for projects
           </h3>
         </div>
         {/* Description */}
-        <div>
-          <h1 className="text-dark dark:text-white  text-[40px] sm:text-[64px] font-bold">
+        <div className="max-w-3xl">
+          <h1 className="text-dark dark:text-white font-bold text-4xl xl:text-6xl">
             Hi, I'm Daniel
           </h1>
-          <p className="text-dark dark:text-white text-[20px]">
-            A Electronic Engineer | Mechatronic Designer | Software Developer
+          <p className="text-dark dark:text-white text-lg xl:text-xl font-medium my-4">
+            Electronic Engineer | Mechatronic Designer | Software Developer
           </p>
-          <p className="text-[#787878] text-justify">
+          <p className="text-[#787878] text-base sm:text-lg lg:text-xl text-justify">
             I’m passionate about AI and robotics, merging technology with
             creativity to build innovative solutions. Let’s shape the future
             together.
@@ -72,7 +68,7 @@ const Hero = () => {
         {/* Social links */}
         <div>
           {/* Redes sociales */}
-          <ul className="space-x-4 mt-6 hidden sm:flex">
+          <ul className="space-x-4 mt-6 hidden lg:flex">
             {socialLinks.map((social, index) => (
               <li key={index}>
                 <a
@@ -98,10 +94,11 @@ const Hero = () => {
         id="social_logo"
         className="flex flex-1 w-full h-full justify-center items-start sm:items-center md:my-0 relative"
       >
-        <div className="flex flex-col sm:hidden  justify-center items-center px-6 w-full">
+        {/* Logo Versión para Mobile */}
+        <div className="flex flex-col justify-center items-center px-6 w-full lg:hidden ">
           {/* Social links */}
           {isMobile && (
-            <div id="logo_particles-mobile" className="mb-16 w-full h-full">
+            <div id="logo_particles-mobile" className="mb-8 w-full h-full">
               <LogoParticles
                 key="mobile"
                 polygonScale={0.4}
@@ -116,7 +113,7 @@ const Hero = () => {
 
           <div id="social_mobile" className="w-full">
             {/* Redes sociales */}
-            <ul className="flex space-x-12 justify-center">
+            <ul className="flex justify-around">
               {socialLinks.map((social, index) => (
                 <li key={index}>
                   <a
@@ -136,12 +133,11 @@ const Hero = () => {
             </ul>
           </div>
         </div>
-
-        {/* 🔹 Versión para Escritorio */}
+        {/* Logo Versión para Escritorio */}
         {!isMobile && (
           <div
             id="logo_particles-desktop"
-            className="z-[0] w-full h-full hidden sm:flex "
+            className="z-[0] w-full h-full hidden lg:flex"
           >
             <LogoParticles
               key="desktop"

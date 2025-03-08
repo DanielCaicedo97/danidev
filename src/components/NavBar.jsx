@@ -44,9 +44,9 @@ const NavBar = () => {
   }, [darkMode]);
 
   return (
-    <header className="absolute top-1/2 w-full">
+    <header className="top-1/2 w-full">
       <nav
-        className=" justify-between items-center h-[150px] w-full size-full hidden md:flex"
+        className=" justify-between items-center h-[150px] w-full size-full hidden lg:flex"
         aria-label="Main navigation"
       >
         {/* Forma lado derecho */}
@@ -87,21 +87,18 @@ const NavBar = () => {
 
           {/* Forma principal */}
           <div
-            className="absolute w-full h-full bg-primary dark:bg-primary-dark flex justify-center items-center"
+            className="w-full h-full bg-primary dark:bg-primary-dark flex justify-center items-center"
             style={{
               clipPath: centerShape,
               zIndex: 1, // Coloca la forma principal encima de la sombra
             }}
           >
-            <ul className="flex space-x-8">
+            <ul className="flex space-x-3 xl:space-x-8">
               {navLinks.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="relative text-primary-dark dark:text-primary text-lg font-semibold transition-all duration-200 
-             after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
-             after:bg-primary-dark dark:after:bg-primary after:transition-all after:duration-300 
-             hover:after:w-full"
+                    className=" text-primary-dark dark:text-primary text-lg font-semibold animated-underline"
                   >
                     {link.label}
                   </a>
@@ -149,12 +146,12 @@ const NavBar = () => {
       </nav>
 
       {/* navbar mobile */}
-      <nav className="flex justify-center items-center md:hidden ">
+      <nav className="flex justify-center items-center lg:hidden ">
         {/* Center Navigation */}
-        <div className="relative w-[345px] h-[100px] mt-6 ">
+        <div className="relative w-full h-[calc(100vw*0.25)] mt-4 ">
           {/* Sombra */}
           <div
-            className="absolute w-full h-full bg-secondary"
+            className="absolute w-full h-full bg-secondary "
             style={{
               clipPath: rightShape,
               transform: "translate(8px, 8px)", // Desplaza la sombra
