@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { close, menu, logo_svg } from "../assets";
+import React, { useState, useEffect, useContext } from "react";
+import { close, menu } from "../assets";
+import { LanguageContext } from "../context/LanguageContext.jsx";
+import { navbar } from "../data/translations.js";
+
 import Logo from "./icons/Logo.jsx";
 import Moon from "./icons/Moon.jsx";
 import Sun from "./icons/Sun.jsx";
 
 const NavBar = () => {
+  const { language, toggleLanguage } = useContext(LanguageContext);
+  const t = navbar[language];
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "#home", label: t.home },
+    { href: "#about", label: t.about },
+    { href: "#skills", label: t.skills },
+    { href: "#projects", label: t.projects },
+    { href: "#contact", label: t.contact },
   ];
 
   // Clip-path shapes
@@ -27,8 +32,6 @@ const NavBar = () => {
 
   const [toggle, setToggle] = useState(false);
   const [darkMode, setDarkMode] = useState(getInitialTheme);
-  const [Language, setLanguage] = useState("ES");
-
   // Alternar entre temas y almacenarlo en localStorage
   const handleDarkMode = () => {
     setDarkMode((prev) => {
@@ -39,14 +42,6 @@ const NavBar = () => {
     });
   };
 
-  const handleLanguage = () => {
-    setLanguage((prev) => {
-      const newLanguage = prev === "ES" ? "EN" : "ES";
-      localStorage.setItem("Language", newLanguage);
-      document.documentElement.lang = newLanguage.toLowerCase();
-      return newLanguage;
-    });
-  };
   // Aplicar el tema guardado o el del sistema
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -84,13 +79,13 @@ const NavBar = () => {
         </div>
 
         {/* Center Navigation */}
-        <div className="relative w-[720px] h-[100px]">
+        <div className="relative w-[900px] h-[100px]">
           {/* Sombra */}
           <div
             className="absolute w-full h-full bg-secondary"
             style={{
               clipPath: centerShape,
-              transform: "translate(8px, 8px)", // Desplaza la sombra
+              transform: "translate(9px, 8px)", // Desplaza la sombra
               zIndex: 0, // Coloca la sombra detrás
             }}
           ></div>
@@ -153,12 +148,12 @@ const NavBar = () => {
             </button>
 
             <button
-              onClick={handleLanguage}
+              onClick={toggleLanguage}
               className="flex items-center justify-center h-12 w-12 rounded-full dark:bg-primary bg-primary-dark
              dark:text-black text-white text-xl font-bold hover:scale-120 transition-all duration-300 
             shadow-md"
             >
-              {Language}
+              {language.toUpperCase()}
             </button>
           </div>
         </div>
@@ -240,12 +235,12 @@ const NavBar = () => {
           </button>
 
           <button
-            onClick={handleLanguage}
+            onClick={toggleLanguage}
             className="flex items-center justify-center h-10 w-full max-w-32 rounded-full bg-primary 
               text-black text-xl font-bold hover:scale-120 transition-all duration-300 
             shadow-md"
           >
-            {Language}
+            {language.toUpperCase()}
           </button>
         </div>
       </nav>

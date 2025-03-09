@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { robot } from "../assets/index.js";
+import { LanguageContext } from "../context/LanguageContext.jsx";
+import { about } from "../data/translations.js"; // Asegúrate de importar el archivo de traducciones
 
 const About = () => {
+  const { language } = useContext(LanguageContext);
+
   return (
     <section
       id="about"
@@ -9,7 +13,7 @@ const About = () => {
     >
       <div>
         <h2 className="text-dark dark:text-white font-bold my-0 lg:my-8 text-4xl sm:text-5xl text-center md:text-left">
-          About Me
+          {about[language].about_me}
         </h2>
       </div>
 
@@ -25,7 +29,7 @@ const About = () => {
 
           {/* Texto con Enlace */}
           <div className="mt-4 text-dark dark:text-white text-lg font-medium">
-            ¡Yes, I modeled this robot!
+            {about[language].yes_modeled_robot}
             <a
               href="https://www.instagram.com/p/DFBss42s1QL/?img_index=1"
               target="_blank"
@@ -35,7 +39,7 @@ const About = () => {
             after:h-[2px] after:bg-blue-500 
             after:transition-all after:duration-300 hover:after:w-full"
             >
-              Click here to see
+              {about[language].click_here_see}
             </a>
           </div>
 
@@ -47,27 +51,20 @@ const About = () => {
           {/* Professional Profile */}
           <div>
             <h3 className="text-dark dark:text-white text-2xl">
-              Professional Profile
+              {about[language].professional_profile}
             </h3>
             <p className="text-[#787878] text-justify leading-relaxed">
-              I am an electronic engineer, mechatronic designer, and software
-              developer with a deep passion for artificial intelligence and
-              robotics. From the beginning of my career, the fusion of
-              technology and creativity has driven me to explore innovative
-              solutions.
+              {about[language].profile_text_1}
             </p>
             <p className="text-[#787878] text-justify leading-relaxed">
-              My passion for robotics and programming pushes me to learn and
-              grow every day in this ever-evolving field. I believe in the power
-              of technology to shape the future, and I’m always ready for new
-              challenges. Let’s build something amazing together!
+              {about[language].profile_text_2}
             </p>
           </div>
 
           {/* Awards & Recognitions */}
           <div>
             <h3 className="text-dark dark:text-white text-2xl">
-              Awards & Recognitions
+              {about[language].awards}
             </h3>
             <ul className="text-[#787878] list-disc list-inside space-y-3">
               <li>
@@ -78,11 +75,10 @@ const About = () => {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 transition-all duration-300"
                   >
-                    First Place – FORMULA ECO SENA (2015)
+                    {about[language].award_1}
                   </a>
                 </b>
-                : Designed and built an electric single-seater vehicle, securing
-                first place.
+                : {about[language].award_1_desc}
               </li>
               <li>
                 <b>
@@ -92,19 +88,16 @@ const About = () => {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 transition-all duration-300"
                   >
-                    ACOFI Recognition for Student Activities (2020)
+                    {about[language].award_2}
                   </a>
                 </b>
-                : Awarded for the project "Embedded System for Minisumo Robot -
-                SIT-UV: An Educational Tool".
+                : {about[language].award_2_desc}
               </li>
               <li>
-                <b>Third Place – FAST BOT Robotics Competition (2018)</b>:
-                Competed in the advanced minisumo category in Cali.
+                <b>{about[language].award_3}</b>: {about[language].award_3_desc}
               </li>
               <li>
-                <b>Third Place – TECNO FEST Robotics Competition (2019)</b>:
-                Showcased technical expertise and innovation in Cali.
+                <b>{about[language].award_4}</b>: {about[language].award_4_desc}
               </li>
             </ul>
           </div>

@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaCogs, FaMicrochip, FaBrain } from "react-icons/fa";
+import { skills } from "../data/translations.js"; // Importa las traducciones
+import { LanguageContext } from "../context/LanguageContext"; // Importa el contexto del idioma
 
 const Skill = () => {
+  const { language } = useContext(LanguageContext); // Obtiene el idioma actual
+  const t = skills[language]; // Traducciones según el idioma seleccionado
+
   const [showDetails, setShowDetails] = useState({
     mechatronic: false,
     electronic: false,
@@ -19,14 +24,10 @@ const Skill = () => {
     >
       <div className="flex flex-col p-4 lg:p-0 max-w-5xl">
         <h2 className="text-dark dark:text-white font-bold text-4xl sm:text-5xl text-center my-12">
-          My Skills
+          {t.skills_title}
         </h2>
         <p className="text-[#787878] text-justify leading-relaxed">
-          Thanks to my participation in various projects and my passion for
-          continuous learning, I have developed a wide range of skills. I
-          specialize in mechatronic design, automated systems, and electronics.
-          In recent years, I have focused on artificial intelligence, data
-          processing, and software development, mainly in backend.
+          {t.skills_description}
         </p>
       </div>
 
@@ -35,22 +36,19 @@ const Skill = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
           <FaCogs className="text-4xl text-dark dark:text-white mb-4" />
           <h3 className="text-lg font-semibold text-dark dark:text-white">
-            Mechatronic Design
+            {t.mechatronic_design}
           </h3>
-          <p className="text-[#787878] mt-2">
-            Conceptualization and development of mechanical systems with
-            electronic integration.
-          </p>
+          <p className="text-[#787878] mt-2">{t.mechatronic_desc}</p>
           {showDetails.mechatronic && (
             <p className="text-sm text-blue-500 font-semibold mt-2">
-              SolidWorks, Keyshot, AUTOCAD, Cura3D, Mach3
+              {t.mechatronic_tools}
             </p>
           )}
           <button
             onClick={() => toggleDetails("mechatronic")}
             className="mt-3 text-blue-500 hover:text-blue-700 text-sm"
           >
-            {showDetails.mechatronic ? "Show less" : "See more"}
+            {showDetails.mechatronic ? t.show_less : t.show_more}
           </button>
         </div>
 
@@ -58,22 +56,19 @@ const Skill = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
           <FaMicrochip className="text-4xl text-dark dark:text-white mb-4" />
           <h3 className="text-lg font-semibold text-dark dark:text-white">
-            Electronic Engineering
+            {t.electronic_engineering}
           </h3>
-          <p className="text-[#787878] mt-2">
-            Design and programming of electronic systems and process automation.
-          </p>
+          <p className="text-[#787878] mt-2">{t.electronic_desc}</p>
           {showDetails.electronic && (
             <p className="text-sm text-green-500 font-semibold mt-2">
-              Proteus, Multisim-NI, Eagle, easyEDA, Platformio, Matlab,
-              Simulink, Arduino, C++
+              {t.electronic_tools}
             </p>
           )}
           <button
             onClick={() => toggleDetails("electronic")}
             className="mt-3 text-blue-500 hover:text-blue-700 text-sm"
           >
-            {showDetails.electronic ? "Show less" : "See more"}
+            {showDetails.electronic ? t.show_less : t.show_more}
           </button>
         </div>
 
@@ -81,22 +76,19 @@ const Skill = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
           <FaBrain className="text-4xl text-dark dark:text-white mb-4" />
           <h3 className="text-lg font-semibold text-dark dark:text-white">
-            AI & Software Development
+            {t.ai_software_dev}
           </h3>
-          <p className="text-[#787878] mt-2">
-            Application of artificial intelligence, data analysis, and backend
-            development.
-          </p>
+          <p className="text-[#787878] mt-2">{t.ai_software_desc}</p>
           {showDetails.software && (
             <p className="text-sm text-orange-400 font-semibold mt-2">
-              Python, Node.js (Nest.js), React, Next.js, Tailwind, PostgreSQL
+              {t.ai_software_tools}
             </p>
           )}
           <button
             onClick={() => toggleDetails("software")}
             className="mt-3 text-blue-500 hover:text-blue-700 text-sm"
           >
-            {showDetails.software ? "Show less" : "See more"}
+            {showDetails.software ? t.show_less : t.show_more}
           </button>
         </div>
       </div>

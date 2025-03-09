@@ -25,7 +25,7 @@ const SocialIcons = ({ width = 32, height = 32 }) => {
     },
   ];
   return (
-    <ul className="space-x-4 mt-6 flex justify-around sm:flex-row">
+    <ul className="space-x-4 flex justify-around sm:flex-row">
       {socialLinks.map((social) => (
         <li key={social.id}>
           <a

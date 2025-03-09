@@ -1,4 +1,4 @@
-import logo_lines_inside from "../../assets/logo_lines_inside.svg";
+import { logo_lines_inside } from "../../assets/index.js";
 
 const getSvgDimensions = () => {
   return new Promise((resolve) => {

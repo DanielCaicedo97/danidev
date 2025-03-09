@@ -1,17 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import LogoParticles from "../components/particles/LogoParticles";
-
+import { LanguageContext } from "../context/LanguageContext.jsx";
+import { hero } from "../data/translations.js";
 import SocialIcons from "./SocialIcons.jsx";
 
 const Hero = () => {
   const logoRef = useRef(null);
+  const { language } = useContext(LanguageContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [PolygonContainer, setPolygonContainer] = useState(0);
   const [windowWidth, setWindowWidth] = useState(1280);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
+      setIsMobile(windowWidth < 1024);
       setWindowWidth(window.innerWidth);
       if (logoRef.current) {
         const { width, height } = logoRef.current.getBoundingClientRect();
@@ -33,28 +35,26 @@ const Hero = () => {
         <div className="flex border-1 border-primary-dark dark:border-primary w-[100%] xl:w-[55%]  rounded-full p-2 justify-start items-center mb-4">
           <span className="bg-[#0DFF00] w-4 h-4 m-2 rounded-full "></span>
           <h3 className="text-primary-dark dark:text-primary">
-            Available for projects
+            {hero[language].available}
           </h3>
         </div>
         {/* Description */}
         <div className="max-w-3xl">
           <h1 className="text-dark dark:text-white font-bold text-4xl xl:text-6xl">
-            Hi, I'm Daniel
+            {hero[language].greeting}
           </h1>
           <p className="text-dark dark:text-white text-lg xl:text-xl font-medium my-4">
-            Electronic Engineer | Mechatronic Designer | Software Developer
+            {hero[language].description}
           </p>
           <p className="text-[#787878] text-base sm:text-lg lg:text-xl text-justify">
-            I’m passionate about AI and robotics, merging technology with
-            creativity to build innovative solutions. Let’s shape the future
-            together.
+            {hero[language].about}
           </p>
         </div>
         {/* Social links */}
         <div>
           {/* Redes sociales */}
 
-          <div className="hidden lg:flex">
+          <div className="hidden lg:flex mt-8">
             <SocialIcons width={50} height={50} />
           </div>
         </div>
