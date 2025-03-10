@@ -91,6 +91,7 @@ const skills = {
 
     show_more: "See more",
     show_less: "Show less",
+    tools: "Tools",
   },
   es: {
     skills_title: "Mis Habilidades",
@@ -116,6 +117,7 @@ const skills = {
 
     show_more: "Ver más",
     show_less: "Ver menos",
+    tools: "Herramientas",
   },
 };
 
@@ -135,4 +137,34 @@ const navbar = {
     contact: "Contacto",
   },
 };
-export { hero, about, skills, navbar };
+
+const tools = {
+  en: {
+    tools: "Tools",
+    electronic_engineering: "Electronic Engineering",
+    mechatronic_design: "Mechatronic Design",
+    ai_software_dev: "AI & Software Development",
+    programming_frontend: "Frontend Development",
+    programming_backend: "Backend Development",
+    ai_technologies: "AI Technologies",
+    data_science: "Data Science",
+    database: "Databases",
+    collaborative: "Collaboration Tools",
+    no_img_available: "No images available",
+  },
+  es: {
+    tools: "Herramientas",
+    electronic_engineering: "Ingeniería Electrónica",
+    mechatronic_design: "Diseño Mecatrónico",
+    ai_software_dev: "IA y Desarrollo de Software",
+    programming_frontend: "Desarrollo Frontend",
+    programming_backend: "Desarrollo Backend",
+    ai_technologies: "Tecnologías de IA",
+    data_science: "Ciencia de Datos",
+    database: "Bases de Datos",
+    collaborative: "Herramientas Colaborativas",
+    no_img_available: "No hay imágenes disponibles",
+  },
+}
+
+export { hero, about, skills, navbar, tools };

@@ -27,8 +27,9 @@ npm install
 ```
 
 3️⃣ Ejecuta el proyecto en modo desarrollo:
-
+```bash
 npm run dev
+```
 o
 
 ```bash
