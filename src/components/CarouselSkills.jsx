@@ -16,19 +16,19 @@ const ImageCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [toogleShowAll, setToggleShowAll] = useState(false);
-
   const { language } = useContext(LanguageContext);
 
   const t = tools[language];
-  // const categoryIcons = iconCategories[selectedCategory] || [];
+
+  const categoryIcons = iconCategories[selectedCategory] || [];
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % categoryImages.length);
+    setCurrentIndex((prev) => (prev + 1) % categoryIcons.length);
   };
 
   const handlePrev = () => {
     setCurrentIndex(
-      (prev) => (prev - 1 + categoryImages.length) % categoryImages.length
+      (prev) => (prev - 1 + categoryImages.length) % categoryIcons.length
     );
   };
 
@@ -46,21 +46,18 @@ const ImageCarousel = () => {
       <div className="flex justify-between items-center w-full max-w-4xl mb-6">
         {/* Selector de categoría */}
         <select
-          className="p-2 rounded w-full md:w-auto"
+          className="p-2 bg-gray-200 rounded hover:bg-gray-300 "
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
-          <option value="mechatronic_designer">{t.mechatronic_design}</option>
-          <option value="electronic_designer">
-            {t.electronic_engineering}
-          </option>
           <option value="ai_software">{t.ai_software_dev}</option>
           <option value="programming_frontend">{t.programming_frontend}</option>
           <option value="programming_backend">{t.programming_backend}</option>
-          <option value="ai_technologies">{t.ai_technologies}</option>
           <option value="data_science">{t.data_science}</option>
           <option value="database">{t.database}</option>
           <option value="collaborative">{t.collaborative}</option>
+          <option value="electronic_designer">{t.electronic_engineering}</option>
+          <option value="mechatronic_designer">{t.mechatronic_design}</option>
         </select>
 
         {/* Botones de control */}
@@ -93,16 +90,35 @@ const ImageCarousel = () => {
       </div>
 
       {/* Carrusel de imágenes */}
-      <div className="w-60 h-60 flex items-center justify-center border rounded-lg bg-gray-100">
-        {/* {categoryImages.length > 0 ? (
-          <img
-            src={categoryImages[currentIndex]}
-            alt="Software Image"
-            className="w-full h-full object-contain"
-          />
+      <div className="w-full  flex flex-wrap items-center justify-center border rounded-lg bg-white dark:bg-gray-800 p-16 gap-10 ">
+        {categoryIcons.length > 0 ? (
+          categoryIcons
+            .filter(Boolean) // Filtra íconos nulos o undefined
+            .map((software, index) => (
+              <a
+                key={index}
+                className="flex flex-col  justify-center items-center text-center  hover:scale-110 transition-all duration-200"
+                href={software.source}
+                alt={software.title}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={software.title}
+              >
+                <h4 className="text-dark dark:text-white text-ss font-semibold">
+                  {software.title}
+                </h4>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="w-12 h-12 fill-primary-dark dark:fill-primary"
+                >
+                  <path d={software.path} />
+                </svg>
+              </a>
+            ))
         ) : (
           <p className="text-gray-500">{t.no_img_available}</p>
-        )} */}
+        )}
       </div>
     </div>
   );

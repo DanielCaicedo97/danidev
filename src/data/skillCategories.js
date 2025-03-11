@@ -2,12 +2,14 @@ import * as Icons from "simple-icons";
 
 const iconCategories = {
   mechatronic_designer: [
-    Icons.siSolidworks,
+    Icons.siDassaultsystemes,
     Icons.siKeyshot,
-    Icons.siAutodesk, // Fusion 360
-    Icons.siCura, // Ultimaker Cura
+    Icons.siAutodesk, 
     Icons.siAutocad,
-    Icons.siMastercam,
+    Icons.siInkscape,
+    Icons.siDelta,
+    Icons.siSiemens, 
+    Icons.siSchneiderelectric, 
   ],
   electronic_designer: [
     Icons.siAutodesk, // Eagle pertenece a Autodesk
