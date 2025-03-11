@@ -1,19 +1,21 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 // Crear contexto
 export const LanguageContext = createContext();
 
 // Proveedor del contexto
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en"); // Idioma inicial
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem("Language") || "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("Language", language);
+    document.documentElement.lang = language.toLowerCase();
+  }, [language]);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => {
-      const newLanguage = prev === "es" ? "en" : "es";
-      localStorage.setItem("Language", newLanguage);
-      document.documentElement.lang = newLanguage.toLowerCase();
-      return newLanguage;
-    });
+    setLanguage((prev) => (prev === "es" ? "en" : "es"));
   };
 
   return (
