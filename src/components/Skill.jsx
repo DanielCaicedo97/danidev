@@ -35,7 +35,7 @@ const Skill = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-5xl p-4 lg:p-0">
           {/* AI & Software Development */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
+          <div  onClick={() => toggleDetails("software")} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
             <FaBrain className="text-4xl text-dark dark:text-white mb-4" />
             <h3 className="text-lg font-semibold text-dark dark:text-white">
               {t.ai_software_dev}
@@ -54,7 +54,7 @@ const Skill = () => {
             </button>
           </div>
           {/* Mechatronic Design */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
+          <div  onClick={() => toggleDetails("mechatronic")} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
             <FaCogs className="text-4xl text-dark dark:text-white mb-4" />
             <h3 className="text-lg font-semibold text-dark dark:text-white">
               {t.mechatronic_design}
@@ -74,7 +74,7 @@ const Skill = () => {
           </div>
 
           {/* Electronic Engineering */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
+          <div  onClick={() => toggleDetails("electronic")} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
             <FaMicrochip className="text-4xl text-dark dark:text-white mb-4" />
             <h3 className="text-lg font-semibold text-dark dark:text-white">
               {t.electronic_engineering}

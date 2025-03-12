@@ -2,7 +2,6 @@ import React from "react";
 import SocialIcons from "./SocialIcons.jsx";
 
 const Footer = () => {
-
   return (
     <footer
       id="footer"
@@ -15,9 +14,7 @@ const Footer = () => {
           </h4>
         </div>
         <div>
-          <p className="text-dark dark:text-white text-md">
-            © 2025 DaniDev. All rights reserved.
-          </p>
+          <p className="text-dark dark:text-white text-md">© 2025.</p>
         </div>
       </div>
       <div className="text-dark dark:text-white text-md text-center font-bold">
@@ -26,7 +23,7 @@ const Footer = () => {
 
       <div>
         {/* Redes sociales */}
-        <SocialIcons width={32} height={32}/>
+        <SocialIcons width={32} height={32} />
       </div>
     </footer>
   );

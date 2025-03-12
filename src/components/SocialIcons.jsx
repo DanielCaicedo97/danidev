@@ -35,7 +35,7 @@ const SocialIcons = ({ width = 32, height = 32 }) => {
   ];
 
   return (
-    <ul className="grid grid-cols-3 gap-6 md:flex md:justify-around w-full">
+    <ul className="grid grid-cols-3 gap-6 md:flex md:justify-around items-center w-full">
       {socialLinks.map(({ id, href, label, Icon }) => (
         <li key={id} className="flex justify-center">
           <a
@@ -55,7 +55,7 @@ const SocialIcons = ({ width = 32, height = 32 }) => {
       ))}
 
       {/* Botón "My Blog" centrado correctamente */}
-      <li className="col-span-3 flex justify-center md:col-span-1 w-full">
+      <li className="col-span-3 flex justify-center items-center md:col-span-1 w-full h-full">
         <a
           href="https://danidev.io/blog/"
           target="_blank"
@@ -68,7 +68,7 @@ const SocialIcons = ({ width = 32, height = 32 }) => {
             before:absolute before:inset-0 before:bg-gradient-to-r 
             before:from-white/10 before:to-transparent before:opacity-0 
             hover:before:opacity-100 before:transition-opacity hover:brightness-110 group
-            w-full h-auto 
+            w-full h-full
           `}
         >
           <span className="text-center text-dark dark:text-white font-bold flex items-center justify-center w-full h-full">
