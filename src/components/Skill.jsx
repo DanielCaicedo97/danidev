@@ -35,7 +35,11 @@ const Skill = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-5xl p-4 lg:p-0">
           {/* AI & Software Development */}
-          <div  onClick={() => toggleDetails("software")} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
+          <div
+            onClick={() => toggleDetails("software")}
+            className="border-2 rounded-2xl border-secondary bg-primary text-secondary 
+      dark:bg-secondary-dark dark:text-primary dark:border-primary-dark p-6  shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105"
+          >
             <FaBrain className="text-4xl text-dark dark:text-white mb-4" />
             <h3 className="text-lg font-semibold text-dark dark:text-white">
               {t.ai_software_dev}
@@ -47,14 +51,21 @@ const Skill = () => {
               </p>
             )}
             <button
-              onClick={() => toggleDetails("software")}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDetails("software");
+              }}
               className="mt-3 text-blue-500 hover:text-blue-700 text-sm"
             >
               {showDetails.software ? t.show_less : t.show_more}
             </button>
           </div>
           {/* Mechatronic Design */}
-          <div  onClick={() => toggleDetails("mechatronic")} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
+          <div
+            onClick={() => toggleDetails("mechatronic")}
+            className="border-2 rounded-2xl border-secondary bg-primary text-secondary 
+      dark:bg-secondary-dark dark:text-primary dark:border-primary-dark  p-6  shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105"
+          >
             <FaCogs className="text-4xl text-dark dark:text-white mb-4" />
             <h3 className="text-lg font-semibold text-dark dark:text-white">
               {t.mechatronic_design}
@@ -66,7 +77,10 @@ const Skill = () => {
               </p>
             )}
             <button
-              onClick={() => toggleDetails("mechatronic")}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDetails("mechatronic");
+              }}
               className="mt-3 text-blue-500 hover:text-blue-700 text-sm"
             >
               {showDetails.mechatronic ? t.show_less : t.show_more}
@@ -74,7 +88,11 @@ const Skill = () => {
           </div>
 
           {/* Electronic Engineering */}
-          <div  onClick={() => toggleDetails("electronic")} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105">
+          <div
+            onClick={() => toggleDetails("electronic")}
+            className="border-2 rounded-2xl border-secondary bg-primary text-secondary 
+      dark:bg-secondary-dark dark:text-primary dark:border-primary-dark p-6 shadow-lg flex flex-col items-center text-center transition-all duration-300 hover:scale-105"
+          >
             <FaMicrochip className="text-4xl text-dark dark:text-white mb-4" />
             <h3 className="text-lg font-semibold text-dark dark:text-white">
               {t.electronic_engineering}
@@ -86,7 +104,10 @@ const Skill = () => {
               </p>
             )}
             <button
-              onClick={() => toggleDetails("electronic")}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDetails("electronic");
+              }}
               className="mt-3 text-blue-500 hover:text-blue-700 text-sm"
             >
               {showDetails.electronic ? t.show_less : t.show_more}

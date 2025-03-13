@@ -60,7 +60,12 @@ const iconCategories = {
       en: "Database Management",
       es: "Gestión de Bases de Datos",
     },
-    icons: [Icons.siPostgresql, Icons.siMysql],
+    icons: [
+      Icons.siPostgresql,
+      Icons.siMysql,
+      Icons.siMongodb, 
+      Icons.siRedis, 
+    ],
   },
   collaborative: {
     title: {
@@ -71,7 +76,7 @@ const iconCategories = {
   },
   mechatronic_designer: {
     title: {
-      en: "Mechatronic Designer",
+      en: "Mechatronic Design",
       es: "Diseño Mecatrónico",
     },
     icons: [
@@ -87,8 +92,8 @@ const iconCategories = {
   },
   electronic_designer: {
     title: {
-      en: "Electronic Designer",
-      es: "Diseñador Electrónico",
+      en: "Electronic Design",
+      es: "Diseño Electrónico",
     },
     icons: [
       Icons.siAutodesk, // Eagle pertenece a Autodesk

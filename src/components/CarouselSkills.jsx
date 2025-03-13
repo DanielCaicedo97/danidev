@@ -1,50 +1,76 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import { FaPlay, FaPause, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { LanguageContext } from "../context/LanguageContext";
 import { tools } from "../data/translations.js";
 import iconCategories from "../data/skillCategories.js";
 
 const ImageCarousel = () => {
-  const [selectedCategory, setSelectedCategory] = useState("ai_software");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const { language } = useContext(LanguageContext);
+
+  // Obtener los nombres de las categorías
+  const getCategoryNames = () => Object.keys(iconCategories);
+  const categoryNames = getCategoryNames();
+
+  // Estado para la categoría seleccionada
+  const [selectedCategory, setSelectedCategory] = useState(
+    categoryNames.length > 0 ? categoryNames[0] : null
+  );
+
+  // Verifica que la categoría seleccionada aún exista
+  useEffect(() => {
+    if (!categoryNames.includes(selectedCategory)) {
+      setSelectedCategory(categoryNames[0] || null);
+    }
+  }, [categoryNames, selectedCategory]);
 
   const t = tools[language];
 
   // Obtener los íconos de la categoría seleccionada
-  const categoryData = iconCategories[selectedCategory] || { icons: [] };
-  const categoryIcons = categoryData.icons;
+  const categoryData = useMemo(() => iconCategories[selectedCategory] || { icons: [] }, [selectedCategory]);
+  const categoryIcons = categoryData.icons || [];
 
-  // Función para manejar el siguiente ícono
+  // Función para avanzar a la siguiente categoría
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % categoryIcons.length);
+    const index = categoryNames.indexOf(selectedCategory);
+    if (index !== -1 && index < categoryNames.length - 1) {
+      setSelectedCategory(categoryNames[index + 1]);
+    } else {
+      setSelectedCategory(categoryNames[0]); // Vuelve al inicio si es la última
+    }
   };
 
-  // Función para manejar el ícono anterior
+  // Función para retroceder a la categoría anterior
   const handlePrev = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + categoryIcons.length) % categoryIcons.length
-    );
+    const index = categoryNames.indexOf(selectedCategory);
+    if (index > 0) {
+      setSelectedCategory(categoryNames[index - 1]);
+    } else {
+      setSelectedCategory(categoryNames[categoryNames.length - 1]); // Va al final si es la primera
+    }
   };
 
-  // Alternar reproducción (esto se puede usar para auto-rotar los íconos si se implementa un intervalo)
+  // Efecto para cambiar automáticamente de categoría cada 500ms si `isPlaying` es `true`
+  useEffect(() => {
+    if (isPlaying) {
+      const interval = setInterval(handleNext, 2000); // Cambia cada 500ms
+      return () => clearInterval(interval); // Limpia el intervalo al desmontar o cambiar estado
+    }
+  }, [isPlaying, selectedCategory]); // Se ejecuta al cambiar `isPlaying` o `selectedCategory`
+
+  // Alternar reproducción automática
   const togglePlay = () => {
     setIsPlaying((prev) => !prev);
   };
 
-  // Diccionario de botones (usando useMemo para optimizar renderizado)
+  // Botones de control optimizados con `useMemo`
   const controlButtons = useMemo(
     () => [
       { onClick: handlePrev, icon: <FaArrowLeft />, title: t.prev },
-      {
-        onClick: togglePlay,
-        icon: isPlaying ? <FaPause /> : <FaPlay />,
-        title: t.play_pause,
-      },
+      { onClick: togglePlay, icon: isPlaying ? <FaPause /> : <FaPlay />, title: t.play_pause },
       { onClick: handleNext, icon: <FaArrowRight />, title: t.next },
     ],
-    [isPlaying, t]
+    [isPlaying, t, selectedCategory]
   );
 
   return (
@@ -59,15 +85,11 @@ const ImageCarousel = () => {
             transition-all duration-300 cursor-pointer outline-none text-sm sm:text-lg font-bold
           "
           value={selectedCategory}
-          onChange={(e) => {
-            setSelectedCategory(e.target.value);
-            setCurrentIndex(0); // Reinicia el índice al cambiar de categoría
-          }}
+          onChange={(e) => setSelectedCategory(e.target.value)}
         >
-          {Object.entries(iconCategories).map(([key, value]) => (
+          {categoryNames.map((key) => (
             <option key={key} value={key}>
-              {value.title[language]}{" "}
-              {/* Renderiza el título en el idioma seleccionado */}
+              {iconCategories[key].title[language]}
             </option>
           ))}
         </select>
@@ -96,30 +118,25 @@ const ImageCarousel = () => {
 
       {/* Carrusel de imágenes */}
       <div
-        className="w-full flex flex-wrap items-center justify-center border-2 rounded-lg border-secondary bg-primary text-secondary 
-      dark:bg-secondary-dark dark:text-primary dark:border-primary-dark p-16 gap-10"
+        className="w-full flex flex-wrap items-center justify-center border-2 rounded-2xl border-secondary bg-primary text-secondary 
+        dark:bg-secondary-dark dark:text-primary dark:border-primary-dark p-16 gap-10"
       >
         {categoryIcons.length > 0 ? (
           categoryIcons
-            .filter(Boolean) // Filtra valores nulos o undefined
+            .filter((icon) => icon && icon.path) // Filtra valores nulos o sin `path`
             .map((icon, index) => (
-              <div
-                key={index}
-                className="flex flex-col justify-center items-center text-center hover:scale-110 transition-all duration-200"
-              >
-                {icon.title && (
-                  <h4 className="text-dark dark:text-white text-ss font-semibold">
-                    {icon.title}
-                  </h4>
-                )}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-12 h-12 fill-primary-dark dark:fill-primary"
-                >
-                  <path d={icon.path} />
-                </svg>
-              </div>
+              <a href={icon.source} rel="noreferer noopener" title={icon.title} target="_blank" key={index}>
+                <div className="flex flex-col justify-center items-center text-center hover:scale-110 transition-all duration-200">
+                  {icon.title && (
+                    <h4 className="text-dark dark:text-white text-ss font-semibold">
+                      {icon.title}
+                    </h4>
+                  )}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-12 h-12 fill-primary-dark dark:fill-primary">
+                    <path d={icon.path} />
+                  </svg>
+                </div>
+              </a>
             ))
         ) : (
           <p className="text-gray-500">{t.no_img_available}</p>
